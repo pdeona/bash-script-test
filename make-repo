@@ -1,3 +1,5 @@
+#!/bin/bash
+
 . ./shflags.sh
 
 DEFINE_boolean 'private' false 'Set the repo to private on creation - only works if you have private repo rights' 'p'
@@ -15,19 +17,26 @@ die()
 FLAGS "$@" || exit 1
 eval set -- "${FLAGS_ARGV}"
 
-if [ ${FLAGS_private} == 0 ]
+if [ "${FLAGS_private}" == 0 ]
   then
   private=true
   else
   private=false
 fi
 
-if [ ${FLAGS_repo_name} == '' ] || [ ${FLAGS_github_user} == '' ]
+if [ "${FLAGS_github_user}" == '' ]
   then
-  die
+  echo 'Required Field missing: Github Username (USAGE: make-repo -n "repo-name" -u "github-username" -[pr])'
+  exit 1
   else
-  repo_name=${FLAGS_repo_name}
-  github_user=${FLAGS_github_user}
+  if [ "${FLAGS_repo_name}" == '' ]
+    then
+      echo 'Required Field missing: Repo Name (USAGE: make-repo -n "repo-name" -u "github-username" -[pr])'
+      exit 1
+    else
+      repo_name=${FLAGS_repo_name}
+      github_user=${FLAGS_github_user}
+  fi
 fi
 
 CURL_COMMAND="curl -H \"X-content-type: application/json\" -u ${github_user} \

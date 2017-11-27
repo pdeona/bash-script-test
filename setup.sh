@@ -1,5 +1,10 @@
 echo 'Setting up make-repo...'
 
-bin_path=
+bin_path="/usr/local/bin"
+working_dir=`pwd`
 
-SYMLINK_COMMAND="ln -s "
+`chmod +x ./make-repo`
+
+SYMLINK_COMMAND="ln -s ${working_dir}/make-repo ${bin_path}/make-repo"
+
+eval "$SYMLINK_COMMAND"
