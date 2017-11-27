@@ -34,19 +34,22 @@ if [ "${FLAGS_github_user}" == '' ]
       echo 'Required Field missing: Repo Name (USAGE: make-repo -n "repo-name" -u "github-username" -[pr])'
       exit 1
     else
-      repo_name=${FLAGS_repo_name}
-      github_user=${FLAGS_github_user}
+      repo_name="${FLAGS_repo_name}"
+      github_user="${FLAGS_github_user}"
   fi
 fi
 
-CURL_COMMAND="curl -H \"X-content-type: application/json\" -u ${github_user} \
+CURL_COMMAND="curl -s -N -H \"X-content-type: application/json\" -u ${github_user} \
     -X POST --data-binary \"{\\\"name\\\": \\\"${repo_name}\\\", \\\"private\\\": \\\"${private}\\\"}\" \"https://api.github.com/user/repos\""
 
-eval "$CURL_COMMAND"
+RESPONSE=`eval "$CURL_COMMAND" | \
+    python -c "import sys, json; print json.load(sys.stdin)['html_url']"`
 
-if [ ${FLAGS_remote_link} == 0 ]
+echo "Repo created at: ${RESPONSE}"
+
+if [ "${FLAGS_remote_link}" == 0 ]
   then
-    REMOTE_ADD="git remote add origin \"https://github.com/${github_user}/${repo_name}.git\""
+    REMOTE_ADD="git remote add origin \"${RESPONSE}\""
     eval "$REMOTE_ADD"
     echo "Remote added, use git push -u origin master to push your local repo to github"
   else
