@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'Setting up make-repo...'
 
 bin_path="/usr/local/bin"
