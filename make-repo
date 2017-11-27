@@ -29,13 +29,13 @@ if [ "${FLAGS_github_user}" == '' ]
   echo 'Required Field missing: Github Username (USAGE: make-repo -n "repo-name" -u "github-username" -[pr])'
   exit 1
   else
+  github_user="${FLAGS_github_user}"
   if [ "${FLAGS_repo_name}" == '' ]
     then
     echo 'Required Field missing: Repo Name (USAGE: make-repo -n "repo-name" -u "github-username" -[pr])'
     exit 1
     else
     repo_name="${FLAGS_repo_name}"
-    github_user="${FLAGS_github_user}"
   fi
 fi
 
