@@ -1,6 +1,13 @@
 #!/bin/bash
 
-. ./shflags.sh
+MAKE_REPO_PATH=`readlink /usr/local/bin/make-repo`
+if [ $# != 127 ]
+  then
+  . "${MAKE_REPO_PATH%make-repo}"shflags.sh
+else
+  echo "shflags not found. check your make_repo directory and make sure it's in there."
+  exit 1
+fi
 
 DEFINE_boolean 'private' false 'Set the repo to private on creation - only works if you have private repo rights' 'p'
 DEFINE_string 'repo_name' '' 'Set the name for the repo to be created on github (Required)' 'n'
