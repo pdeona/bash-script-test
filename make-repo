@@ -3,7 +3,7 @@
 MAKE_REPO_PATH=`readlink /usr/local/bin/make-repo`
 if [ $# != 127 ]
   then
-  . "${MAKE_REPO_PATH%make-repo}"shflags.sh
+  . "${MAKE_REPO_PATH%/make-repo}/shflags.sh"
 else
   echo "symlink not found. did you run setup.sh?"
   exit 1
