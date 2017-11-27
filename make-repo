@@ -42,12 +42,12 @@ fi
 CURL_COMMAND="curl -H \"X-content-type: application/json\" -u ${github_user} \
     -X POST --data-binary \"{\\\"name\\\": \\\"${repo_name}\\\", \\\"private\\\": \\\"${private}\\\"}\" \"https://api.github.com/user/repos\""
 
-eval $CURL_COMMAND
+eval "$CURL_COMMAND"
 
 if [ ${FLAGS_remote_link} == 0 ]
   then
     REMOTE_ADD="git remote add origin \"https://github.com/${github_user}/${repo_name}.git\""
-    eval $REMOTE_ADD
+    eval "$REMOTE_ADD"
     echo "Remote added, use git push -u origin master to push your local repo to github"
   else
     exit 0
