@@ -5,7 +5,7 @@ if [ $# != 127 ]
   then
   . "${MAKE_REPO_PATH%make-repo}"shflags.sh
 else
-  echo "shflags not found. check your make_repo directory and make sure it's in there."
+  echo "symlink not found. did you run setup.sh?"
   exit 1
 fi
 
