@@ -5,15 +5,15 @@
 ### Installation
 
 ```
-git clone https://github.com/pdeona/make-repo.git
-cd make-repo/
-setup.sh
+$ git clone https://github.com/pdeona/make-repo.git
+$ cd make-repo/
+$ setup.sh
 ```
 
 ### Usage
 
 ```bash
-make-repo -u <GITHUB USERNAME> -n <REPO NAME> -[rp]
+$ make-repo -u <GITHUB USERNAME> -n <REPO NAME> -[rp]
 ```
 
 Flags:
