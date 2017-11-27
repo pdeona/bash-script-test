@@ -7,7 +7,7 @@
 ```
 $ git clone https://github.com/pdeona/make-repo.git
 $ cd make-repo/
-$ setup.sh
+$ ./setup.sh
 ```
 
 ### Usage
